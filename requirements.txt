@@ -1,0 +1,3 @@
+# Core P1 code uses only the standard library. These are optional:
+pyflakes     # better undefined-name detection (runner.py falls back to a built-in check without it)
+datasets     # only for scripts/get_mbpp.py

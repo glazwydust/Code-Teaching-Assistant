@@ -1,0 +1,6 @@
+refactory_data/
+data/
+*.zip
+__pycache__/
+nus_report.csv
+labeling_sheet*

@@ -89,7 +89,7 @@ def main():
                     + (f", error: {bad['error']}" if bad["error"] else "")) if bad else "(none)"
             md.append(f"\n### q{q} / {name}\n\n```python\n{code.rstrip()}\n```\n\nFirst failing test: {fail}\n")
             csv_rows.append({"question": q, "file": name, "failure_kind": failure_kind(res),
-                             "labeller_1": "", "labeller_2": "", "notes": ""})
+                             "labeller_1": "", "notes": ""})
 
     with open(os.path.join(args.out, "labeling_sheet.md"), "w", encoding="utf-8") as f:
         f.write("".join(md))

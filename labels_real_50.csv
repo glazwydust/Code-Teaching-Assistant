@@ -1,0 +1,51 @@
+question,file,failure_kind,label,notes
+1,wrong_1_356.py,wrong_answer,wrong_operator,x < seq[pos] should be <=
+1,wrong_1_158.py,runtime_error,missing_edge_case,crashes on empty list (seq[0] read first)
+1,wrong_1_509.py,runtime_error,missing_edge_case,crashes on empty list (seq[len-1])
+1,wrong_1_559.py,runtime_error,other,never stops at first match; keeps overwriting pos
+1,wrong_1_193.py,wrong_answer,missing_edge_case,returns None on empty list
+1,wrong_1_163.py,wrong_answer,wrong_operator;off_by_one,x>=seq[-1] should be >; range(len-1) skips last
+1,wrong_1_004.py,runtime_error,wrong_operator;missing_edge_case,x < seq[0] should be <=; also empty-list crash
+1,wrong_1_185.py,runtime_error,other,meaningless loop; returns seq.index(i)-1
+1,wrong_1_357.py,wrong_answer,missing_return,"returns rebuilt list, not the position"
+1,wrong_1_216.py,wrong_answer,missing_edge_case,returns None on empty list
+2,wrong_2_311.py,runtime_error,name_typo;missing_return,typo 'conter'; two functions are empty
+2,wrong_2_025.py,wrong_answer,missing_edge_case,returns True when day never occurs (count 0)
+2,wrong_2_424.py,wrong_answer,wrong_operator,count>1 should be count!=1 (month absent counts as unique)
+2,wrong_2_235.py,wrong_answer,wrong_operator,count>1 should be count!=1 (absent counts as unique)
+2,wrong_2_028.py,runtime_error,name_typo,uses 'day' but parameter is 'date' (NameError)
+2,wrong_2_419.py,wrong_answer,missing_return,contains_unique_day returns nothing
+2,wrong_2_029.py,wrong_answer,wrong_operator,count>1 should be count!=1 (absent counts as unique)
+2,wrong_2_193.py,wrong_answer,missing_return,unique_month/contains_unique_day return nothing
+2,wrong_2_070.py,wrong_answer,missing_edge_case,flag logic returns True when day never occurs
+2,wrong_2_210.py,wrong_answer,missing_return;wrong_init,two functions empty; x starts at 1 so absent day counts as unique
+3,wrong_3_113.py,runtime_error,missing_return;other,prints instead of returning; only compares with first item
+3,wrong_3_190.py,wrong_answer,other,removes the earlier duplicate while iterating
+3,wrong_3_081.py,runtime_error,other,newlst = newlst.append(i) sets list to None
+3,wrong_3_154.py,runtime_error,other,result += ele (int) should be append
+3,wrong_3_307.py,wrong_answer,missing_return,no return
+3,wrong_3_183.py,wrong_answer,wrong_variable,tests 'e not in lst' (always False) instead of the new list
+3,wrong_3_199.py,runtime_error,name_typo,append[ele] typo; returns undefined new_list; lst[0] before empty check
+3,wrong_3_226.py,wrong_answer,other;off_by_one,pop(i) removes the earlier duplicate; range(len-2) also skips items
+3,wrong_3_100.py,wrong_answer,other,"reverses the list in place, order wrong"
+3,wrong_3_196.py,runtime_error,other,new_lst + i (int) should be append
+4,wrong_4_327.py,wrong_answer,wrong_variable,pops index i instead of the index of oldest
+4,wrong_4_154.py,wrong_answer,missing_return;other,returns new.reverse (no parentheses); sorts then reverses wrongly
+4,wrong_4_135.py,runtime_error,other,uses 'new' before it exists; removes a number from a list of tuples
+4,wrong_4_102.py,runtime_error,wrong_variable,compares a tuple with an int
+4,wrong_4_081.py,wrong_answer,missing_return,prints instead of returning
+4,wrong_4_308.py,wrong_answer,wrong_operator,> should be < (sorts ascending)
+4,wrong_4_343.py,wrong_answer,missing_return,returns lst.sort(...) which is None
+4,wrong_4_328.py,wrong_answer,wrong_variable,same as wrong_4_327 (pops index i)
+4,wrong_4_069.py,runtime_error,name_typo,undefined name 'sort'; loop logic wrong
+4,wrong_4_115.py,runtime_error,missing_edge_case,compares list to () and crashes on empty list
+5,wrong_5_024.py,runtime_error,name_typo;wrong_variable,sort.pop[0] typo; biggest never updated (oldest = i)
+5,wrong_5_103.py,runtime_error,missing_return;other,counter never increments; no return
+5,wrong_5_004.py,runtime_error,name_typo;wrong_variable,'ele' undefined; removes wrong item
+5,wrong_5_074.py,wrong_answer,other,keeps looping after k reached; extra item
+5,wrong_5_055.py,runtime_error,missing_edge_case,lst[0] after list is empty
+5,wrong_5_045.py,runtime_error,off_by_one,while len<=k should be <k (one extra)
+5,wrong_5_025.py,wrong_answer,wrong_variable,oldest = i should update biggest
+5,wrong_5_102.py,runtime_error,missing_return;other,counter never increments; no return
+5,wrong_5_082.py,runtime_error,off_by_one,while len<=k should be <k (one extra)
+5,wrong_5_030.py,wrong_answer,off_by_one,checks len==k after appending; k=0 returns one item

@@ -3,12 +3,12 @@ question,file,failure_kind,label,notes
 1,wrong_1_158.py,runtime_error,missing_edge_case,crashes on empty list (seq[0] read first)
 1,wrong_1_509.py,runtime_error,missing_edge_case,crashes on empty list (seq[len-1])
 1,wrong_1_559.py,runtime_error,other,never stops at first match; keeps overwriting pos
-1,wrong_1_193.py,wrong_answer,missing_edge_case,returns None on empty list
-1,wrong_1_163.py,wrong_answer,wrong_operator;off_by_one,x>=seq[-1] should be >; range(len-1) skips last
+1,wrong_1_193.py,wrong_answer,missing_edge_case;early_return,returns None on empty list; moving the return after the loop fixes it
+1,wrong_1_163.py,wrong_answer,wrong_operator;off_by_one;early_return,x>=seq[-1] should be >; range(len-1) skips last; return len(seq) inside the loop (moving it fixes part)
 1,wrong_1_004.py,runtime_error,wrong_operator;missing_edge_case,x < seq[0] should be <=; also empty-list crash
 1,wrong_1_185.py,runtime_error,other,meaningless loop; returns seq.index(i)-1
 1,wrong_1_357.py,wrong_answer,missing_return,"returns rebuilt list, not the position"
-1,wrong_1_216.py,wrong_answer,missing_edge_case,returns None on empty list
+1,wrong_1_216.py,wrong_answer,missing_edge_case;early_return,returns None on empty list; moving the return after the loop fixes it
 2,wrong_2_311.py,runtime_error,name_typo;missing_return,typo 'conter'; two functions are empty
 2,wrong_2_025.py,wrong_answer,missing_edge_case,returns True when day never occurs (count 0)
 2,wrong_2_424.py,wrong_answer,wrong_operator,count>1 should be count!=1 (month absent counts as unique)

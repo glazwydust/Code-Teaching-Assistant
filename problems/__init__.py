@@ -39,6 +39,7 @@ BUG_TYPES = [
     "wrong_variable",
     "name_typo",
      "missing_edge_case",
+    "early_return",
 ]
 
 _cache = {}

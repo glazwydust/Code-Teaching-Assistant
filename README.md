@@ -76,9 +76,14 @@ python runner.py sum_list my_attempt.py
 ## Real student programs (NUS / Refactory data)
 
 The project plan uses the Refactory dataset (`data.zip` from github.com/githubhuyang/refactory,
-5 NUS assignments; 2,442 correct and 1,783 wrong student programs). Unzip it so that the folders
-`question_1` .. `question_5` are in `refactory_data/data` (or set the environment variable
-`CODEED_NUS_DATA`). The problems then work by id, exactly like the first 5:
+5 NUS assignments; 2,442 correct and 1,783 wrong student programs). A copy of `data.zip` is in this
+repo. Unzip it once, from the project folder, so that the folders `question_1` .. `question_5` end up
+in `refactory_data/data` (PowerShell):
+
+    Expand-Archive data.zip -DestinationPath refactory_data
+
+(or set the environment variable `CODEED_NUS_DATA` to wherever you unzipped it). The problems then
+work by id, exactly like the first 5:
 
 ```python
 run_code(code, "nus_q3")              # ids: nus_q1 .. nus_q5

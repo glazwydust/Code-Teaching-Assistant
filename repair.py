@@ -14,27 +14,44 @@ def is_successful(result):
 
 def try_repairs(code_string, suspicious_lines, predicted_bug_types, problem_id):
     """
-    Attempts to repair the given code string based on suspicious lines and bug types.
+    Attempts to repair the given code string, ensuring state resets between attempts.
     """
-    lines = code_string.splitlines()
+    # 1. Check if initial code already passes
+    initial_result = run_code(code_string, problem_id)
+    if is_successful(initial_result):
+        return {
+            "success": True,
+            "message": "Code already passes all tests.",
+            "repaired_code": code_string
+        }
 
-    if "off_by_one" in predicted_bug_types:
-        for i, line in enumerate(lines):
-            if "- 1" in line or "-1" in line:
-                fixed_line = line.replace("- 1", "").replace("-1", "")
-                lines[i] = fixed_line
+    # 2. Iterate through predicted bug types
+    for bug_type in predicted_bug_types:
+        if bug_type == "off_by_one":
+            for line_no in suspicious_lines:
+                # ALWAYS reset lines to a fresh copy of code_string for each try!
+                lines = code_string.splitlines()
+                idx = line_no - 1
                 
-                candidate_code = "\n".join(lines) + "\n"
-                
-                test_result = run_code(candidate_code, problem_id)
-                print(f"DEBUG REPAIR - Candidate test_result: {test_result}")
-                
-                if is_successful(test_result):
-                    return {
-                        "success": True,
-                        "message": "Successfully repaired off-by-one bug.",
-                        "repaired_code": candidate_code.strip()
-                    }
+                if 0 <= idx < len(lines):
+                    target_line = lines[idx]
+                    if "- 1" in target_line or "-1" in target_line:
+                        # Apply fix
+                        fixed_line = target_line.replace("- 1", "").replace("-1", "")
+                        lines[idx] = fixed_line
+                        
+                        candidate_code = "\n".join(lines) + "\n"
+                        
+                        # Test candidate repair
+                        test_result = run_code(candidate_code, problem_id)
+                        if is_successful(test_result):
+                            return {
+                                "success": True,
+                                "message": "Successfully repaired off-by-one bug.",
+                                "repaired_code": candidate_code.strip()
+                            }
+
+        # TODO: Add handlers for other bug types here, or integrate AST logic from auto_label.py
 
     return {
         "success": False,

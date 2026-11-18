@@ -13,9 +13,9 @@ returns None -> missing_return, only empty inputs fail -> missing_edge_case, ...
 
 Run from the codeEd folder (one command):
 
-    py scripts/auto_label.py --out auto_labels.csv            # all 5 questions, ~10-20 min
-    py scripts/auto_label.py --questions 1 --limit 50         # quick try
-    py scripts/auto_label.py --compare labels_real_50.csv     # also score against human labels
+    python3 scripts/auto_label.py --out auto_labels.csv            # all 5 questions, ~10-20 min
+    python3 scripts/auto_label.py --questions 1 --limit 50         # quick try
+    python3 scripts/auto_label.py --compare labels_real_50.csv     # also score against human labels
 
 The labels are machine-made. Use them for training data and for the "what do real students
 get wrong" analysis. Keep the human-labelled set as the final test set.
@@ -802,6 +802,9 @@ def compare(rows, human_csv):
 
 
 def main():
+    if os.name == "nt":
+        sys.exit("This script runs student code with Unix timers, so it needs Linux, Mac or WSL "
+                 "(Windows Subsystem for Linux). The app itself (classifier.py) works on Windows.")
     ap = argparse.ArgumentParser()
     ap.add_argument("--questions", type=int, nargs="+", default=[1, 2, 3, 4, 5])
     ap.add_argument("--limit", type=int, default=0, help="programs per question (0 = all)")

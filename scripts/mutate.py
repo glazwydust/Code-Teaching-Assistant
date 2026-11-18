@@ -25,9 +25,9 @@ rules the team agreed on, so synthetic and real labels mean the same thing:
 
 Run from the codeEd folder (one command):
 
-    py scripts/mutate.py                       # toy problems + all 5 NUS questions
-    py scripts/mutate.py --questions 1 --limit 50     # quick try
-    py scripts/mutate.py --out data/mutants.jsonl --double 0.25 --seed 0
+    python3 scripts/mutate.py                       # toy problems + all 5 NUS questions
+    python3 scripts/mutate.py --questions 1 --limit 50     # quick try
+    python3 scripts/mutate.py --out data/mutants.jsonl --double 0.25 --seed 0
 
 Output: one JSON object per line (see FIELDS below) and a count table per bug type.
 """
@@ -353,6 +353,13 @@ def injections(code, problem, rng):
                     r = lst.pop(lst.index(n) + 1)
                     n.body.append(r)
                 add("early_return", node, f, "return after loop -> last line of loop")
+                # students often KEEP the return after the loop as well: copy instead of move
+                if isinstance(last_in_loop, ast.If) and not last_in_loop.orelse:
+                    def f(n, t, field=field):
+                        h = _parents(t)[n]
+                        lst = getattr(h, field)
+                        n.body[-1].orelse = [copy.deepcopy(lst[lst.index(n) + 1])]
+                    add("early_return", node, f, "else: return inside loop (return after loop kept)")
     return out
 
 
@@ -510,6 +517,9 @@ def run_all(keys, workers):
 
 
 def main():
+    if os.name == "nt":
+        sys.exit("This script runs student code with Unix timers, so it needs Linux, Mac or WSL "
+                 "(Windows Subsystem for Linux). The app itself (classifier.py) works on Windows.")
     ap = argparse.ArgumentParser()
     ap.add_argument("--questions", type=int, nargs="*", default=[1, 2, 3, 4, 5])
     ap.add_argument("--no-toy", action="store_true", help="skip the 5 toy problems")

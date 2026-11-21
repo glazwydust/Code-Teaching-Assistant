@@ -50,7 +50,9 @@ find_suspicious_lines(code, "sum_list")
 
 - Problem ids: `sum_list`, `factorial`, `max_in_list`, `count_evens`, `is_palindrome`.
 - Bug types (`problems.BUG_TYPES`): `off_by_one`, `wrong_operator`, `missing_base_case`,
-  `wrong_init`, `missing_return`.
+  `wrong_init`, `missing_return`, `wrong_variable`, `name_typo`, `missing_edge_case`,
+  `early_return` (plus `other` for real programs that fit none). `missing_base_case` was almost
+  never seen in the real data (1 of 1,722 wrong programs).
 - `problems.get_problem(id)` gives P2 the tests, the 4 correct solutions (`solutions`) to
   break, and seed buggy programs (`buggy_examples`, with the true bug line).
 - A test passes only if the value AND the type match, so `1` does not pass for `True` and
@@ -81,6 +83,12 @@ hardened one: do not run untrusted code from the public internet without a conta
 python self_test.py
 python runner.py sum_list my_attempt.py
 ```
+## Run the website
+
+    py -m pip install streamlit
+    py -m streamlit run app.py
+
+It opens in your browser at http://localhost:8501.
 
 ## Real student programs (NUS / Refactory data)
 
@@ -130,3 +138,4 @@ py scripts/check_leakage.py --max-wrong 300
   solution) plus a CSV for two people to label by bug type.
 - `check_leakage.py`: how close the real wrong programs are to the correct ones that P2 will break
   for training (near-twins make the test too easy).
+  

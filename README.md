@@ -6,7 +6,8 @@ against test cases, points to the exact line that is going wrong, names the type
 of the solution. It works even when the code has several bugs, and says "not sure" when it
 can't tell.
 
-This folder is **P1: code runner and detective**. Everyone else builds on it.
+This repo is the whole project. P1 built the code runner and line finder, P2 the bug-type model,
+P3 the repair search, P4 the website.
 
 ## Layout
 

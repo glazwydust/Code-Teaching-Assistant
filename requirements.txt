@@ -1,3 +1,8 @@
-# Core P1 code uses only the standard library. These are optional:
-pyflakes     # better undefined-name detection (runner.py falls back to a built-in check without it)
-datasets     # only for scripts/get_mbpp.py
+streamlit        # the website (app.py)
+pyflakes         # optional: better undefined-name detection (runner.py works without it)
+
+# only needed to retrain the model (scripts/train.py, Linux/Mac/WSL):
+numpy
+scipy
+scikit-learn
+matplotlib

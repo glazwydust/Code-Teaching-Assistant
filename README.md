@@ -12,12 +12,20 @@ P3 the repair search, P4 the website.
 ## Layout
 
 ```
-problems/        5 problems: statement, tricky tests, 4 correct solutions, 2 buggy examples each
-runner.py        run_code(code, problem_id)            -> test results
-localize.py      find_suspicious_lines(code, problem_id) -> ranked suspicious lines
-_worker.py       runs one test in a separate process (used by runner.py)
-self_test.py     python self_test.py   (checks everything; takes about 20 s)
-scripts/get_mbpp.py   optional: download MBPP from Hugging Face
+app.py              the website (Streamlit): paste code, get a line, a bug type and a hint
+runner.py           P1: run_code(code, problem_id)              -> test results
+localize.py         P1: find_suspicious_lines(code, problem_id) -> ranked suspicious lines
+_worker.py          P1: runs one test in a separate process (used by runner.py)
+nus.py              P1: loads the real NUS student data (tests, reference solutions, programs)
+problems/           P1: 5 practice problems and the list of bug types
+classifier.py       P2: predict_bugs(code, problem_id) -> likely bug types, or "not sure"
+models/             P2: the trained model (one JSON file)
+repair.py           P3: try_repairs(...) tries small fixes and re-runs the tests
+scripts/            validate_nus, make_label_sheet, check_leakage (P1); mutate, auto_label, train (P2)
+reports/            P2's results and figures
+labels_real_50.csv  50 real wrong programs labelled by bug type (the final test set)
+nus_report2.csv     runner vs dataset agreement, one row per program
+self_test.py        python self_test.py (checks the runner and line finder, about 20 s)
 ```
 
 ## The contract (agree with P2, P3, P4)
